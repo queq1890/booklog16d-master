@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124100131) do
+ActiveRecord::Schema.define(version: 20180523094851) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -18,26 +18,6 @@ ActiveRecord::Schema.define(version: 20171124100131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
-  end
-
-  create_table "bookshelves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_bookshelves_on_product_id", using: :btree
-    t.index ["user_id"], name: "index_bookshelves_on_user_id", using: :btree
-  end
-
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",         null: false
-    t.string   "image"
-    t.string   "author",       null: false
-    t.string   "publisher",    null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.date     "release_date"
-    t.index ["name"], name: "index_products_on_name", using: :btree
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,9 +30,7 @@ ActiveRecord::Schema.define(version: 20171124100131) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
-    t.integer  "product_id"
     t.string   "isbn"
-    t.index ["product_id"], name: "index_reviews_on_product_id", using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
@@ -85,6 +63,4 @@ ActiveRecord::Schema.define(version: 20171124100131) do
   end
 
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "bookshelves", "products"
-  add_foreign_key "bookshelves", "users"
 end
