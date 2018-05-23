@@ -1,0 +1,27 @@
+@import "./reset";
+@import "font-awesome";
+@import 'slick';
+@import 'slick-theme';
+
+@import "./modules/color";
+@import "./modules/flash";
+@import "./modules/input-placeholder";
+@import "./modules/user-icon";
+@import "./modules/slick-custom";
+@import "./modules/spoiler";
+
+@import "./pages/shared/header";
+@import "./pages/shared/footer";
+@import "./pages/shared/_wrapper";
+
+@import "./pages/products/index";
+@import "./pages/products/new";
+@import "./pages/products/show";
+@import "./pages/products/search";
+
+@import "./pages/users/devise";
+@import "./pages/users/edit";
+@import "./pages/users/profile";
+@import "./pages/users/show";
+
+@import "./pages/reviews/edit";

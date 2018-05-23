@@ -1,0 +1,143 @@
+= render 'shared/header'
+= render 'shared/flash'
+.body
+
+  .wrapper
+    %ul.breadcrumbs
+      %li.breadcrumbs__home
+        %a{href:""} 仮
+      %li.breadcrumbs__current-page
+        >  仮です
+    .profile-setting
+      プロフィールの設定
+    .lead
+      プロフィール、プロフィールタグ、お気に入りベスト3を設定します。
+
+    = form_for(@user, html: {class:"form-wrapper"}) do |f|
+      .form-wrapper__top
+        .form-title
+          基本設定
+        %a.link_to_mypage{href:"" }
+          プロフィールの確認
+      .input-row.input-row__nickname
+        .left-contents
+          ニックネーム
+        .right-contents
+          = f.text_field :nickname, class:"right-contents__nickname"
+
+      .input-row.input-row__image
+        .left-contents
+          プロフィール画像
+        .right-contents
+          = f.file_field :avatar, class:"right-contents__image"
+
+      .input-row.input-row__biography
+        .left-contents.left-contents__biography
+          自己紹介
+        .right-contents
+          = f.text_area :biography, class:"right-contents__biography"
+          %ul
+            %li 1000文字以内 / HTMLタグ使用不可
+
+      .input-row.input__gender
+        .left-contents
+          性別
+        .right-contents
+          %span
+            = f.radio_button :gender,1 ,class: "checkbox-gender"
+            %label 男性
+          %span
+            = f.radio_button :gender,2 ,class: "checkbox-gender"
+            %label 女性
+          %span
+            = f.radio_button :gender,0 ,class: "checkbox-gender"
+            %label 秘密
+
+      .input-row.input__birthday
+        .left-contents
+          誕生日
+        .right-contents
+          .right-contents__birthdate
+            = f.date_select :birth_date, {use_month_numbers: true, start_year: 1901, end_year: Time.now.year}
+
+      .input-row.input__job
+        .left-contents
+          職業
+        .right-contents
+          = f.text_field :job, class:"right-contents__job", placeholder:"書店員、大学生"
+
+      .input-row.input__prefecture
+        .left-contents
+          都道府県
+        .right-contents
+          .right-contents__prefecture
+            = f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
+
+      .input-row.input__hometown
+        .left-contents
+          ホームタウン
+        .right-contents
+          = f.text_field :hometown ,class:"right-contents__prefecture", placeholder: "渋谷、大名"
+      .input-row.input__website
+        .left-contents
+          あなたのウェブサイト
+        .right-contents
+          = f.text_field :website, class:"right-contents__website", placeholder: "http://booklog.jugem.jp"
+
+      .btn-wrapper
+        = f.submit "プロフィールタグを更新する", class:"update-btn"
+
+    .side-bar
+      .advertisement
+      .side-bar__title
+        いろいろな設定
+      .side-bar__list
+        %p.side-bar__subtitle
+          本棚の設定
+        %ul
+          %li
+            %a{href:""} 本棚の基本設定
+          %li
+            %a{href:""} タイムラインの設定
+          %li
+            %a{href:""} 本棚の非公開設定
+          %li
+            %a{href:""} プロフィールの設定
+          %li
+            %a{href:""} アカウント情報
+          %li
+            %a{href:""}
+              レビュー掲載範囲の設定
+              %i.fa.fa-twitter-square.mini-twitter-icon
+              %i.fa.fa-facebook-square.mini-facebook-icon
+          %li
+            %a{href:""} パスワードの変更
+          %li
+            %a{href:""} 退会
+
+        %p.side-bar__subtitle
+          外部サービス連携
+        %ul
+          %li
+            %a{href:""} SNSアカウント設定
+          %li
+            %a{href:""} Amazonアフィリエイト設定
+          %li
+            %a{href:""} 投稿ログ
+
+        %p.side-bar__subtitle
+          通知設定
+        %ul
+          %li
+            %a{href:""} 通知設定
+          %li
+            %a{href:""} 新刊通知キーワード設定
+
+        %p.side-bar__subtitle
+          読書目標
+        %ul
+          %li
+            %a{href:""} 読書目標の設定
+
+/ 上記のul部分は後でgemを調べて実装する
+= render 'shared/footer'

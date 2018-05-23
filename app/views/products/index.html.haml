@@ -1,0 +1,69 @@
+= render 'shared/header'
+= render 'shared/flash'
+
+.body
+  .wrapper
+    .top-page
+      = image_tag "bnr_winner2017_970_230.png",class:"booklog-award"
+    .middle-page
+      %ul.recommend-list
+        %li.recommend-list__1
+          = image_tag "bb-200.png"
+        %li.recommend-list__2
+          = image_tag "bnr_200_65.png"
+        %li.recommend-list__3
+          = image_tag "bnr_bukutsu200_65.png"
+        %li.recommend-list__4
+          = image_tag "bnr_itengineer2017_200_65.png"
+
+      .middle-page-content
+        .middle-page-content__popular-review
+          %h2.top-title
+            最新のレビュー
+          = render partial: "late_review", collection: @reviews, as:"review"
+          .more-btn
+            = link_to "もっとみる", "", class:"more-btn__body"
+        .middle-page-content__ranking
+          %h2.top-title
+            登録者数ランキング
+          = render partial: "ranking", collection: @ranking_books_results, as:"ranking"
+          .more-btn
+            = link_to "もっとみる", "", class:"more-btn__body"
+
+        .middle-page-content__release
+          %h2.top-title
+            最近登録された本
+          = render partial: "lately_registerd", collection: @bookmark_books_results, as:"book"
+
+          .more-btn
+            = link_to "もっとみる", "", class:"more-btn__body"
+        .popular-author
+          %h3.popular-author__heading
+            話題の作家
+          %ul.hot-authors
+            - 45.times do
+              %li
+                = link_to "青山", "", class:"authors-name"
+              %li
+              = link_to "青山", "", class:"authors-name"
+
+          %h3.popular-author__heading
+            人気の作家のおすすめ本・新刊情報・電子書籍
+          %ul.popular-authors
+            - 45.times do
+              %li
+                = link_to "田中", "", class:"authors-name"
+              %li
+                = link_to "田中", "", class:"authors-name"
+
+        .advertisement
+        .total-amount-of-numbers-about-booklog
+          %span ブクログは、
+          %span.red 104万5403人
+          %span の利用者が、
+          %span.red 7751万4529アイテム
+          %span を登録して、
+          %span.red 812万5116件のレビュー
+          %span を書いています。
+
+= render 'shared/footer'
