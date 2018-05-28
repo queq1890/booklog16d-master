@@ -1,9 +1,9 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.0"
 
-set :application, "booklog16d-master"
+set :application, "booklog16d"
 set :repo_url, "git://github.com/queq1890/booklog16d-master.git"
-set :bundle_gemfile, "booklog16d-master/Gemfile"
+set :bundle_gemfile, "booklog16d/Gemfile"
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
