@@ -1,5 +1,7 @@
 class BookmarksController < ApplicationController
 
+  before_action :authenticate_user!, only: :create
+
   def create
     @bookmark = Bookmark.new(bookmark_params)
     if @bookmark.save
