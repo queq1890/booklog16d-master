@@ -8,6 +8,9 @@
 http://booklog.jp/
 
 ## DB構成
+
+
+
 ### Userモデル
  | カラム名 | 型 | index | 外部制約|その他 |
   | :---------------: |:---------------:| :----------: | :----------: | :-------:|
@@ -34,6 +37,8 @@ http://booklog.jp/
   - imageのアップロードはcarrierwaveを用いて行う。
 
 ### Productモデル
+####<!>ProductモデルはItemsモデルの実装により、不要となったためなくなった。
+
  | カラム名 | 型 | index | 外部制約|その他 |
   | :---------------: |:---------------:| :----------: | :----------: | :-------:|
   |name|string|true||null: false|
@@ -52,11 +57,22 @@ http://booklog.jp/
 #### 備考
   ・imageのアップロードはcarrierwaveを用いて行う。
 
-### Bookshelfモデル(Product - Userの中間テーブル)
+### Itemモデル
+####<!>Itemモデルはテーブルを持っていない。OpenBD APIとGoogleBookAPIの組み合わせでデータを表現している。
+####isbnは、書籍に個別に割り振られる番号であり、これを使ってどの本を本棚に登録するか、どの本のレビューを書いたかを判断している。
+
+```ruby:app/models/item.rb
+class Item
+  include ActiveModel::Model
+  attr_accessor :id,:isbn, :name, :image, :author, :publisher, :release_date
+end
+```
+
+### Bookmarkモデル
  | カラム名 | 型 | index | 外部制約|その他 |
   | :---------------: |:---------------:| :----------: | :----------: | :-------:|
   |user_id|integer|-||-|
-  |product_id|integer|-||-|
+  |isbn|integer|-||-|
 
 #### Association
   - belongs_to :user
