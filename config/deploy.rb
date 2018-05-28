@@ -3,6 +3,7 @@ lock "~> 3.10.0"
 
 set :application, "booklog16d-master"
 set :repo_url, "git://github.com/queq1890/booklog16d-master.git"
+set :bundle_gemfile, "booklog16d-master/Gemfile"
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
